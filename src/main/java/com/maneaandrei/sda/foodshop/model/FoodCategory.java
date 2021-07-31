@@ -21,4 +21,20 @@ public class FoodCategory {
     public FoodCategory() {
 
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFoodCategoryName() {
+        return foodCategoryName;
+    }
+
+    public void setFoodCategoryName(String foodCategoryName) {
+        this.foodCategoryName = foodCategoryName;
+    }
 }

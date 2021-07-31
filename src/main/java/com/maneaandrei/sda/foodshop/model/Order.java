@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "food_order")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
