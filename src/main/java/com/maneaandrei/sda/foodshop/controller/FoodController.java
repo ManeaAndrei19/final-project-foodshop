@@ -28,7 +28,7 @@ public class FoodController {
         model.addAttribute("foods", foods);
 
         List<FoodCategory> food_categories = foodService.findAll().stream()
-                .map(food -> food.getFoodCategory()).collect(Collectors.toList());
+                .map(food -> food.getFoodCategory()).distinct().collect(Collectors.toList());
         model.addAttribute("food_categories", food_categories);
 
         return "foods";

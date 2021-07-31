@@ -13,9 +13,13 @@ public class FoodCategory {
     @Column(name = "name")
     private String foodCategoryName;
 
-    public FoodCategory(Long id, String foodCategoryName) {
+    @Column(name = "hash")
+    private String foodHash;
+
+    public FoodCategory(Long id, String foodCategoryName, String foodHash) {
         this.id = id;
         this.foodCategoryName = foodCategoryName;
+        this.foodHash = foodHash;
     }
 
     public FoodCategory() {
@@ -36,5 +40,13 @@ public class FoodCategory {
 
     public void setFoodCategoryName(String foodCategoryName) {
         this.foodCategoryName = foodCategoryName;
+    }
+
+    public String getFoodHash() {
+        return foodHash;
+    }
+
+    public void setFoodHash(String foodHash) {
+        this.foodHash = foodHash;
     }
 }

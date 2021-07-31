@@ -1,8 +1,21 @@
-.center-text{
+.center-text {
     text-align: center;
 }
 
-.blood{
+.blood {
     color: red;
 }
 
+.food-category-name {
+    color: royalblue;
+    font: 25px italic;
+}
+
+.food-tag {
+    color: cadetblue;
+    font: 30px bold;
+}
+
+.food-item-space {
+    padding: 10px 0 10px 0;
+}

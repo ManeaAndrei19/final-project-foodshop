@@ -12,70 +12,45 @@
 <body>
 <div class="container">
 
+    <div class="d-flex justify-content-end">
+        <a href="/login" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="/registration" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i> Register</a>
+        <a href="/registration" class="btn btn-warning"><i class="fas fa-cart-plus"></i> My Orders</a>
+    </div>
+
     <p class=""><a href="/add-food" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i></a></p>
-    <a href="#pizzaloc">Pizza</a>
-    <a href="#burgerloc">Burger</a>
     <h2 class="center-text blood">Foods MENU</h2>
+
+
     <div class="d-flex flex-wrap justify-content-between">
-        <div th:each="food : ${foods}" class="">
-            <img th:src="${food.thumbnail}" alt="" width="250" height="180">
-            <h2 th:text="${food.name}" class="center-text"></h2>
-            <h2 th:text="${food.price}+${food.currency}"></h2>
-            <button type="button" class="btn btn-warning">Add To Cart</button>
+        <div th:each="food_category : ${food_categories}">
+            <a th:href="${food_category.getFoodHash()}" th:text="${food_category.getFoodCategoryName()}" class="food-category-name"></a>
         </div>
     </div>
 
-    <div>
-        <h1 id="pizzaloc">PIZZA</h1>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non ornare dolor. Vestibulum ultricies odio a placerat blandit. Etiam aliquam efficitur lorem, vel luctus turpis. Vivamus pulvinar, enim eu dictum dapibus, justo tellus porttitor massa, nec tristique lorem enim id erat. In hac habitasse platea dictumst. Etiam lectus lacus, hendrerit nec vulputate non, rutrum eu sem. Aenean suscipit libero in orci mollis mattis. Maecenas vel sollicitudin urna. Suspendisse in bibendum dolor. Morbi placerat imperdiet tincidunt. Etiam elementum ultricies libero, maximus pulvinar orci sodales eget. Nam id elit sodales, vehicula felis accumsan, accumsan sapien. Aenean malesuada enim lectus, ac blandit metus posuere et. Fusce eget bibendum neque.
-
-        Duis a erat at turpis iaculis mollis in ut nunc. Cras eget nulla porta tellus elementum lobortis sed eu ante. Mauris luctus felis ac mauris tristique, vitae porta nisi fringilla. Integer risus ipsum, imperdiet sit amet lacus laoreet, pharetra facilisis quam. Maecenas id eleifend risus. Proin orci turpis, egestas at dui non, mollis tempus metus. Maecenas efficitur, dolor vel auctor aliquet, eros purus euismod quam, eu gravida est dolor at eros. Sed scelerisque, erat vitae ullamcorper malesuada, sapien diam accumsan odio, a efficitur turpis eros sed mauris. Phasellus fermentum, ligula eget feugiat volutpat, leo purus maximus ex, in facilisis mi tellus in enim. Nam eu erat quis libero tempus dapibus a ut nisl. Praesent ultricies scelerisque ipsum vitae finibus.
-
-        Sed non dolor id ligula pretium varius nec viverra magna. Nunc ultricies magna vel metus malesuada, eu iaculis ipsum bibendum. Cras imperdiet risus in vulputate mollis. Donec id augue ligula. Vestibulum diam urna, dignissim ac ante vel, dignissim tempus leo. Duis eu lectus tortor. Duis molestie euismod consequat. Quisque sed congue est. Aenean vulputate elementum metus, fringilla cursus nisi aliquam sed. Maecenas auctor mollis placerat.
-
-        Mauris auctor fermentum facilisis. Vestibulum vehicula eros quis luctus luctus. Sed lacinia viverra massa et consequat. In condimentum magna et ligula convallis luctus. Sed sapien nibh, consequat in lobortis a, sollicitudin non augue. Vivamus euismod vehicula lacus, vestibulum dictum velit. Pellentesque eu neque nisl. Integer vel aliquam dolor. Proin laoreet est id elit cursus rutrum. Pellentesque non hendrerit magna.
-
-        Maecenas rhoncus lacus non nisl dignissim dictum. Suspendisse semper felis sapien, ac lacinia sapien auctor nec. Nam feugiat turpis ac diam congue, nec pulvinar arcu eleifend. Ut eget mauris et metus ullamcorper eleifend. Sed sagittis sed odio at luctus. Nullam posuere elit purus, non pulvinar mi porttitor at. Aenean sagittis odio in malesuada lobortis. Nulla eu ipsum maximus, aliquet ipsum in, pellentesque lorem. Proin sagittis tristique arcu, a congue leo egestas sed.
-
-        Suspendisse ac nisl ut dui tincidunt pharetra. Etiam vel convallis ligula. Donec vestibulum aliquet egestas. In a pulvinar neque. Aenean maximus ex eget varius dapibus. Cras eu felis ipsum. Nullam tellus nisi, efficitur vel dictum id, aliquam in dui. Phasellus lobortis blandit erat, quis scelerisque tortor pellentesque et.
-
-        Donec iaculis metus vitae enim cursus faucibus. Aliquam ultricies augue elementum efficitur faucibus. Praesent lobortis, lacus eu faucibus auctor, augue lorem mattis ligula, vitae fringilla erat elit at sapien. Aenean luctus justo ac vehicula imperdiet. Etiam quam eros, fringilla vel lacus sed, varius molestie velit. Praesent enim erat, viverra a lacus sit amet, suscipit ultricies nisl. Aenean vitae interdum purus. Vestibulum condimentum felis at dictum mattis. Aliquam sit amet enim sit amet felis bibendum iaculis. Aliquam nec felis a felis efficitur pellentesque. In hendrerit ex non placerat molestie. Nulla non justo sed erat hendrerit elementum gravida at odio. Aliquam at leo nec dolor hendrerit vehicula eget a magna. Donec eu mauris quis ipsum aliquet pellentesque. Maecenas porttitor molestie ultrices. Ut efficitur sapien justo, ut feugiat purus varius quis.
-
-        Donec iaculis quis neque eu semper. Suspendisse nulla odio, consectetur sed accumsan at, euismod at massa. Cras quis lobortis nisi. Cras volutpat metus non tortor porta lacinia. Aenean vitae cursus lacus, quis iaculis nisi. Nullam auctor aliquet diam eget convallis. Curabitur orci est, consectetur ac tincidunt nec, gravida a sapien. Nulla facilisi. Suspendisse ultrices ligula id quam vestibulum, vitae euismod velit efficitur. Nullam tempus ac velit dapibus facilisis. Integer a sodales magna, eu ultricies mi. Etiam sollicitudin turpis magna, in elementum erat faucibus id. Vestibulum varius sem eros, at tincidunt lacus iaculis sed. Integer magna tortor, sodales et augue at, varius placerat ante. Maecenas a risus et magna accumsan venenatis nec dictum ex. Aliquam bibendum turpis at nisi ultricies, a molestie risus molestie.
-
-        Nam vestibulum sagittis felis nec vulputate. Suspendisse vehicula cursus pulvinar. Duis vitae ipsum ac tellus pretium condimentum. Donec sed bibendum nibh. In euismod ante at libero mattis fermentum. Nullam ultrices at sapien eget rhoncus. Suspendisse rhoncus orci orci, id consequat dolor semper pretium. Sed purus nunc, tristique at magna nec, facilisis iaculis nisi. Fusce dapibus odio nec augue imperdiet tristique. Nullam vitae arcu finibus, condimentum dui a, egestas justo. Maecenas enim nunc, egestas quis commodo eget, aliquet at nisl. Integer gravida lacinia augue. Praesent in est diam.
-
-        Suspendisse non sapien sed mi efficitur pellentesque. Mauris pulvinar a quam nec dignissim. Proin nec magna aliquam libero auctor rhoncus. In at ornare libero. Sed ultricies consectetur vehicula. Vestibulum luctus egestas magna, sit amet ultrices neque ullamcorper tincidunt. Morbi laoreet sollicitudin lectus, id dapibus dui tincidunt id. Cras tincidunt blandit lobortis. Integer eleifend urna eget ante posuere, egestas finibus felis gravida.
-
-        Etiam a iaculis felis. Donec ut velit congue, laoreet lorem posuere, egestas ligula. Sed at varius tellus. In semper hendrerit lectus in pulvinar. Suspendisse sit amet orci bibendum justo mattis ultrices in ac leo. Nullam id aliquet est. Morbi interdum nulla et felis tincidunt, non mollis ipsum varius. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam id pharetra massa. Praesent elit risus, posuere sed ornare eu, rhoncus ac magna. Aenean ut dapibus mi, vel convallis purus. Nam tristique orci id molestie posuere. Curabitur at erat consectetur, euismod tellus varius, facilisis massa. Nullam suscipit lacus ut eros efficitur, eu elementum libero consectetur. Duis fringilla, sapien ac venenatis rhoncus, libero metus tempor enim, suscipit tempus sapien ante laoreet odio. Curabitur quis lacus laoreet, congue mi a, placerat erat.
+    <div class="d-flex flex-wrap justify-content-between">
+        <div th:each="food : ${foods}" class="center-text food-item-space">
+            <img th:src="${food.thumbnail}" alt="" width="250" height="180">
+            <h2 th:text="${food.name}"></h2>
+            <h2 th:text="${food.price}+${food.currency}"></h2>
+            <button type="button" class="btn btn-warning"><i class="fas fa-cart-plus"></i> Add To Cart</button>
+        </div>
     </div>
 
-    <div>
-        <h1 id="burgerloc">BURGER</h1>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non ornare dolor. Vestibulum ultricies odio a placerat blandit. Etiam aliquam efficitur lorem, vel luctus turpis. Vivamus pulvinar, enim eu dictum dapibus, justo tellus porttitor massa, nec tristique lorem enim id erat. In hac habitasse platea dictumst. Etiam lectus lacus, hendrerit nec vulputate non, rutrum eu sem. Aenean suscipit libero in orci mollis mattis. Maecenas vel sollicitudin urna. Suspendisse in bibendum dolor. Morbi placerat imperdiet tincidunt. Etiam elementum ultricies libero, maximus pulvinar orci sodales eget. Nam id elit sodales, vehicula felis accumsan, accumsan sapien. Aenean malesuada enim lectus, ac blandit metus posuere et. Fusce eget bibendum neque.
-
-        Duis a erat at turpis iaculis mollis in ut nunc. Cras eget nulla porta tellus elementum lobortis sed eu ante. Mauris luctus felis ac mauris tristique, vitae porta nisi fringilla. Integer risus ipsum, imperdiet sit amet lacus laoreet, pharetra facilisis quam. Maecenas id eleifend risus. Proin orci turpis, egestas at dui non, mollis tempus metus. Maecenas efficitur, dolor vel auctor aliquet, eros purus euismod quam, eu gravida est dolor at eros. Sed scelerisque, erat vitae ullamcorper malesuada, sapien diam accumsan odio, a efficitur turpis eros sed mauris. Phasellus fermentum, ligula eget feugiat volutpat, leo purus maximus ex, in facilisis mi tellus in enim. Nam eu erat quis libero tempus dapibus a ut nisl. Praesent ultricies scelerisque ipsum vitae finibus.
-
-        Sed non dolor id ligula pretium varius nec viverra magna. Nunc ultricies magna vel metus malesuada, eu iaculis ipsum bibendum. Cras imperdiet risus in vulputate mollis. Donec id augue ligula. Vestibulum diam urna, dignissim ac ante vel, dignissim tempus leo. Duis eu lectus tortor. Duis molestie euismod consequat. Quisque sed congue est. Aenean vulputate elementum metus, fringilla cursus nisi aliquam sed. Maecenas auctor mollis placerat.
-
-        Mauris auctor fermentum facilisis. Vestibulum vehicula eros quis luctus luctus. Sed lacinia viverra massa et consequat. In condimentum magna et ligula convallis luctus. Sed sapien nibh, consequat in lobortis a, sollicitudin non augue. Vivamus euismod vehicula lacus, vestibulum dictum velit. Pellentesque eu neque nisl. Integer vel aliquam dolor. Proin laoreet est id elit cursus rutrum. Pellentesque non hendrerit magna.
-
-        Maecenas rhoncus lacus non nisl dignissim dictum. Suspendisse semper felis sapien, ac lacinia sapien auctor nec. Nam feugiat turpis ac diam congue, nec pulvinar arcu eleifend. Ut eget mauris et metus ullamcorper eleifend. Sed sagittis sed odio at luctus. Nullam posuere elit purus, non pulvinar mi porttitor at. Aenean sagittis odio in malesuada lobortis. Nulla eu ipsum maximus, aliquet ipsum in, pellentesque lorem. Proin sagittis tristique arcu, a congue leo egestas sed.
-
-        Suspendisse ac nisl ut dui tincidunt pharetra. Etiam vel convallis ligula. Donec vestibulum aliquet egestas. In a pulvinar neque. Aenean maximus ex eget varius dapibus. Cras eu felis ipsum. Nullam tellus nisi, efficitur vel dictum id, aliquam in dui. Phasellus lobortis blandit erat, quis scelerisque tortor pellentesque et.
-
-        Donec iaculis metus vitae enim cursus faucibus. Aliquam ultricies augue elementum efficitur faucibus. Praesent lobortis, lacus eu faucibus auctor, augue lorem mattis ligula, vitae fringilla erat elit at sapien. Aenean luctus justo ac vehicula imperdiet. Etiam quam eros, fringilla vel lacus sed, varius molestie velit. Praesent enim erat, viverra a lacus sit amet, suscipit ultricies nisl. Aenean vitae interdum purus. Vestibulum condimentum felis at dictum mattis. Aliquam sit amet enim sit amet felis bibendum iaculis. Aliquam nec felis a felis efficitur pellentesque. In hendrerit ex non placerat molestie. Nulla non justo sed erat hendrerit elementum gravida at odio. Aliquam at leo nec dolor hendrerit vehicula eget a magna. Donec eu mauris quis ipsum aliquet pellentesque. Maecenas porttitor molestie ultrices. Ut efficitur sapien justo, ut feugiat purus varius quis.
-
-        Donec iaculis quis neque eu semper. Suspendisse nulla odio, consectetur sed accumsan at, euismod at massa. Cras quis lobortis nisi. Cras volutpat metus non tortor porta lacinia. Aenean vitae cursus lacus, quis iaculis nisi. Nullam auctor aliquet diam eget convallis. Curabitur orci est, consectetur ac tincidunt nec, gravida a sapien. Nulla facilisi. Suspendisse ultrices ligula id quam vestibulum, vitae euismod velit efficitur. Nullam tempus ac velit dapibus facilisis. Integer a sodales magna, eu ultricies mi. Etiam sollicitudin turpis magna, in elementum erat faucibus id. Vestibulum varius sem eros, at tincidunt lacus iaculis sed. Integer magna tortor, sodales et augue at, varius placerat ante. Maecenas a risus et magna accumsan venenatis nec dictum ex. Aliquam bibendum turpis at nisi ultricies, a molestie risus molestie.
-
-        Nam vestibulum sagittis felis nec vulputate. Suspendisse vehicula cursus pulvinar. Duis vitae ipsum ac tellus pretium condimentum. Donec sed bibendum nibh. In euismod ante at libero mattis fermentum. Nullam ultrices at sapien eget rhoncus. Suspendisse rhoncus orci orci, id consequat dolor semper pretium. Sed purus nunc, tristique at magna nec, facilisis iaculis nisi. Fusce dapibus odio nec augue imperdiet tristique. Nullam vitae arcu finibus, condimentum dui a, egestas justo. Maecenas enim nunc, egestas quis commodo eget, aliquet at nisl. Integer gravida lacinia augue. Praesent in est diam.
-
-        Suspendisse non sapien sed mi efficitur pellentesque. Mauris pulvinar a quam nec dignissim. Proin nec magna aliquam libero auctor rhoncus. In at ornare libero. Sed ultricies consectetur vehicula. Vestibulum luctus egestas magna, sit amet ultrices neque ullamcorper tincidunt. Morbi laoreet sollicitudin lectus, id dapibus dui tincidunt id. Cras tincidunt blandit lobortis. Integer eleifend urna eget ante posuere, egestas finibus felis gravida.
-
-        Etiam a iaculis felis. Donec ut velit congue, laoreet lorem posuere, egestas ligula. Sed at varius tellus. In semper hendrerit lectus in pulvinar. Suspendisse sit amet orci bibendum justo mattis ultrices in ac leo. Nullam id aliquet est. Morbi interdum nulla et felis tincidunt, non mollis ipsum varius. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam id pharetra massa. Praesent elit risus, posuere sed ornare eu, rhoncus ac magna. Aenean ut dapibus mi, vel convallis purus. Nam tristique orci id molestie posuere. Curabitur at erat consectetur, euismod tellus varius, facilisis massa. Nullam suscipit lacus ut eros efficitur, eu elementum libero consectetur. Duis fringilla, sapien ac venenatis rhoncus, libero metus tempor enim, suscipit tempus sapien ante laoreet odio. Curabitur quis lacus laoreet, congue mi a, placerat erat.
+    <div th:each="food_category : ${food_categories}">
+        <h1 th:id="${food_category.getFoodCategoryName()}" th:text="${food_category.getFoodCategoryName()}"
+            class="center-text food-category-name"></h1>
+        <div class="d-flex flex-wrap ">
+            <div th:each="food : ${foods}">
+                <div th:if="${food.getFoodCategory().getId()==food_category.id}" class="center-text food-item-space">
+                    <img th:src="${food.thumbnail}" alt="" width="250" height="180">
+                    <h2 th:text="${food.name}"></h2>
+                    <h2 th:text="${food.price}+${food.currency}"></h2>
+                    <button type="button" class="btn btn-warning"><i class="fas fa-cart-plus"></i> Add To Cart</button>
+                </div>
+            </div>
+        </div>
     </div>
-
-</div>
 </div>
 </body>
 </html>
