@@ -35,6 +35,7 @@ header {
 header h1 {
     color: var(--headfoot-font-color);
     font-family: "Sofia", sans-serif;
+    font-size: 30px;
 }
 
 footer {
@@ -42,9 +43,12 @@ footer {
     height: 200px;
 }
 
+footer h1 {
+    font-family: 'MonteCarlo', cursive;
+    color: var(--headfoot-font-color);
+}
 footer div p {
     color: var(--headfoot-font-color);
-    margin-top: 30px;
 }
 
 /* ##################################   Navigation         ################################### */

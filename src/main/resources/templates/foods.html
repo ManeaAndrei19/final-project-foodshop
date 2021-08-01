@@ -25,7 +25,7 @@
     <div>
         <h2 class="center-text ">MENU</h2>
     </div>
-    <nav class="d-flex flex-wrap justify-content-between">
+    <nav class="d-flex flex-wrap justify-content-around">
         <div th:each="food_category : ${food_categories}">
             <a th:href="${food_category.getFoodHash()}" th:text="${food_category.getFoodCategoryName()}"
                class="food-category-selector"></a>
@@ -57,7 +57,8 @@
 
 </div>
 <footer>
-    <div class="container">
+    <div class="container center-text">
+        <h1> Information</h1>
         <p><i class="fas fa-mobile-alt"></i> Phone: 0754848937</p>
         <p><i class="far fa-envelope"></i> Email: maneaandrei19@yahoo.com</p>
     </div>
