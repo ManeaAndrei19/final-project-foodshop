@@ -35,6 +35,19 @@ public class FoodService {
         foodRepository.save(food);
     }
 
+    public FoodDTO createFoodDTO(Food food) {
+        FoodDTO foodDTO = new FoodDTO();
+        foodDTO.setId(food.getId());
+        foodDTO.setName(food.getName());
+        foodDTO.setDescription(food.getDescription());
+        foodDTO.setThumbnail(food.getThumbnail());
+        foodDTO.setCurrency(food.getCurrency());
+        foodDTO.setPrice(food.getPrice());
+        foodDTO.setFoodCategoryId(food.getFoodCategory().getId());
+
+        return foodDTO;
+    }
+
     public List<Food> findAll() {
         return StreamSupport.stream(foodRepository.findAll().spliterator(), false).collect(Collectors.toList());
     }

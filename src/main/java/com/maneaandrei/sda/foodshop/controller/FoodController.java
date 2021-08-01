@@ -2,13 +2,13 @@ package com.maneaandrei.sda.foodshop.controller;
 
 import com.maneaandrei.sda.foodshop.model.Food;
 import com.maneaandrei.sda.foodshop.model.FoodCategory;
+import com.maneaandrei.sda.foodshop.service.FoodCategoryService;
 import com.maneaandrei.sda.foodshop.service.FoodService;
 import com.maneaandrei.sda.foodshop.service.dto.FoodDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -19,9 +19,11 @@ import java.util.stream.Collectors;
 @Controller
 public class FoodController {
     private final FoodService foodService;
+    private final FoodCategoryService foodCategoryService;
 
-    public FoodController(FoodService foodService) {
+    public FoodController(FoodService foodService, FoodCategoryService foodCategoryService) {
         this.foodService = foodService;
+        this.foodCategoryService = foodCategoryService;
     }
 
     @GetMapping("/foods")
@@ -48,8 +50,7 @@ public class FoodController {
 
     @GetMapping("/add-food")
     public String showAddFoodPage(Model model) {
-        List<FoodCategory> food_categories = foodService.findAll().stream()
-                .map(food1 -> food1.getFoodCategory()).distinct().collect(Collectors.toList());
+        List<FoodCategory> food_categories = foodCategoryService.findAll();
         model.addAttribute("food_categories", food_categories);
 
         model.addAttribute("food", new FoodDTO());
@@ -63,8 +64,7 @@ public class FoodController {
             List<Food> foods = foodService.findAll();
             model.addAttribute("foods", foods);
 
-            List<FoodCategory> food_categories = foodService.findAll().stream()
-                    .map(food1 -> food1.getFoodCategory()).distinct().collect(Collectors.toList());
+            List<FoodCategory> food_categories = foodCategoryService.findAll();
             model.addAttribute("food_categories", food_categories);
             return "add-food";
         } else {
@@ -74,5 +74,29 @@ public class FoodController {
         return "redirect:/foods";
     }
 
+
+    ////////EDIT
+    @GetMapping("/edit/{id}")
+    public String showEditResidenceForm(@PathVariable(value = "id") Long id, Model model) {
+        Food food = foodService.findById(id).get(); // convert to DTO
+
+        FoodDTO foodDTO = foodService.createFoodDTO(food);
+
+        model.addAttribute("foods", food); // insert foodDTO?
+        return "edit-food";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateResidence(@PathVariable(value = "id") Long id, @Valid Food food,
+                                  BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "edit-food";
+        }
+        FoodDTO foodDTO = foodService.createFoodDTO(food);
+        foodService.save(foodDTO);
+        List<Food> foods = foodService.findAll();
+        model.addAttribute("foods", foods);
+        return "redirect:/foods";
+    }
 
 }

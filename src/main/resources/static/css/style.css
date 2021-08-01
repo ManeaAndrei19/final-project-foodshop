@@ -72,25 +72,53 @@ nav {
 }
 
 .food-item-space {
-    margin: 12px;
-    width: 280px;
-    height: 340px;
+
+    width: auto;
+    /*height: 200px;*/
 }
 
 
-/* ##################################   Foods page         ################################### */
-
-
+/* ##################################   Foods page  Grid       ################################### */
 .food-item {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
     gap: 0px 0px;
-    grid-auto-flow: row;
+    grid-auto-flow: column;
     grid-template-areas:
-    "food-img food-info";
+    "food-img"
+    "food-info";
+    margin: 15px 0px;
 }
 
-.food-img { grid-area: food-img; }
+.food-img {
+    grid-area: food-img;
+}
 
-.food-info { grid-area: food-info; }
+.food-info {
+    grid-area: food-info;
+    padding: 25px 0px;
+}
+
+@media only screen and (min-width: 600px) {
+    .food-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+    "food-img food-info";
+        margin: 15px 0px;
+    }
+
+    .food-img {
+        grid-area: food-img;
+    }
+
+    .food-info {
+        grid-area: food-info;
+        padding: 25px 0px;
+    }
+}
+

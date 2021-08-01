@@ -32,23 +32,29 @@
         </div>
     </nav>
 
-
     <div th:each="food_category : ${food_categories}">
         <h1 th:id="${food_category.getFoodCategoryName()}" th:text="${food_category.getFoodCategoryName()}"
             class="center-text food-category-name"></h1>
-        <div class="d-flex flex-wrap justify-content-around">
+        <div class="center-text">
             <div th:each="food : ${foods}">
-                <div th:if="${food.getFoodCategory().getId()==food_category.id}" class="center-text food-item-space">
-                    <a th:href="@{/edit/{id}(id=${food.id})}" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                    <a th:href="@{/delete/{id}(id=${food.id})}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                    <img th:src="${food.thumbnail}" alt="" width="250" height="180">
-                    <h2 th:text="${food.name}"></h2>
-                    <h2 th:text="${food.price}+${food.currency}"></h2>
-                    <button type="button" class="btn btn-warning"><i class="fas fa-cart-plus"></i> Add To Cart</button>
+                <div th:if="${food.getFoodCategory().getId()==food_category.id}" class=" food-item-space">
+                    <div class="food-item">
+                        <div class="food-img">
+                            <img th:src="${food.thumbnail}" alt="" width="350" height="250">
+                        </div>
+                        <div class="food-info">
+                            <a th:href="@{/edit/{id}(id=${food.id})}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                            <a th:href="@{/delete/{id}(id=${food.id})}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                            <h2 th:text="${food.name}"></h2>
+                            <h2 th:text="${food.price}+${food.currency}"></h2>
+                            <button type="button" class="btn btn-warning"><i class="fas fa-cart-plus"></i> Add To Cart</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 <footer>
     <div class="container">
