@@ -10,39 +10,37 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="container">
-
-    <div class="d-flex justify-content-end">
-        <a href="/login" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Login</a>
-        <a href="/registration" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i> Register</a>
-        <a href="/registration" class="btn btn-warning"><i class="fas fa-cart-plus"></i> My Orders</a>
+<header>
+    <div class="container center-text">
+        <h1>Andrei's Bistro</h1>
+        <div class="d-flex justify-content-end">
+            <a href="/login" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="/registration" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i> Register</a>
+            <a href="/registration" class="btn btn-warning"><i class="fas fa-cart-plus"></i> My Orders</a>
+        </div>
     </div>
-
     <p class=""><a href="/add-food" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i></a></p>
-    <h2 class="center-text blood">Foods MENU</h2>
-
-
-    <div class="d-flex flex-wrap justify-content-between">
+</header>
+<div class="container">
+    <div>
+        <h2 class="center-text ">MENU</h2>
+    </div>
+    <nav class="d-flex flex-wrap justify-content-between">
         <div th:each="food_category : ${food_categories}">
-            <a th:href="${food_category.getFoodHash()}" th:text="${food_category.getFoodCategoryName()}" class="food-category-name"></a>
+            <a th:href="${food_category.getFoodHash()}" th:text="${food_category.getFoodCategoryName()}"
+               class="food-category-selector"></a>
         </div>
-    </div>
+    </nav>
 
-    <div class="d-flex flex-wrap justify-content-between">
-        <div th:each="food : ${foods}" class="center-text food-item-space">
-            <img th:src="${food.thumbnail}" alt="" width="250" height="180">
-            <h2 th:text="${food.name}"></h2>
-            <h2 th:text="${food.price}+${food.currency}"></h2>
-            <button type="button" class="btn btn-warning"><i class="fas fa-cart-plus"></i> Add To Cart</button>
-        </div>
-    </div>
 
     <div th:each="food_category : ${food_categories}">
         <h1 th:id="${food_category.getFoodCategoryName()}" th:text="${food_category.getFoodCategoryName()}"
             class="center-text food-category-name"></h1>
-        <div class="d-flex flex-wrap ">
+        <div class="d-flex flex-wrap justify-content-around">
             <div th:each="food : ${foods}">
                 <div th:if="${food.getFoodCategory().getId()==food_category.id}" class="center-text food-item-space">
+                    <a th:href="@{/edit/{id}(id=${food.id})}" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                    <a th:href="@{/delete/{id}(id=${food.id})}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                     <img th:src="${food.thumbnail}" alt="" width="250" height="180">
                     <h2 th:text="${food.name}"></h2>
                     <h2 th:text="${food.price}+${food.currency}"></h2>
@@ -52,5 +50,11 @@
         </div>
     </div>
 </div>
+<footer>
+    <div class="container">
+        <p><i class="fas fa-mobile-alt"></i> Phone: 0754848937</p>
+        <p><i class="far fa-envelope"></i> Email: maneaandrei19@yahoo.com</p>
+    </div>
+</footer>
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.maneaandrei.sda.foodshop.controller;
 import com.maneaandrei.sda.foodshop.model.Food;
 import com.maneaandrei.sda.foodshop.model.FoodCategory;
 import com.maneaandrei.sda.foodshop.service.FoodService;
+import com.maneaandrei.sda.foodshop.service.dto.FoodDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,21 +46,30 @@ public class FoodController {
     }
 
     @GetMapping("/add-food")
-    public String showAddFoodPage(Food food) {
+    public String showAddFoodPage(FoodDTO foodDTO, Model model) {
+
+        List<FoodCategory> food_categories = foodService.findAll().stream()
+                .map(food1 -> food1.getFoodCategory()).distinct().collect(Collectors.toList());
+        model.addAttribute("food_categories", food_categories);
         return "add-food";
     }
 
     @PostMapping("/add-food")
-    public String addFood(@Valid Food food, BindingResult result, Model model) {
+    public String addFood(@Valid FoodDTO foodDTO, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            List<Food> foods = foodService.findAll();
+            model.addAttribute("foods", foods);
+
+            List<FoodCategory> food_categories = foodService.findAll().stream()
+                    .map(food1 -> food1.getFoodCategory()).distinct().collect(Collectors.toList());
+            model.addAttribute("food_categories", food_categories);
             return "add-food";
         } else {
-            foodService.save(food);
+            foodService.save(foodDTO);
         }
-
-        List<Food> foods = foodService.findAll();
-        model.addAttribute("foods", foods);
 
         return "foods";
     }
+
+
 }

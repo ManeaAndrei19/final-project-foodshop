@@ -1,21 +1,78 @@
+/* ##################################   Initial imports   ################################### */
+@import url('https://fonts.googleapis.com/css2?family=MonteCarlo&family=Sofia&display=swap');
+
+
+/* ##################################   Basic declarations   ################################### */
+
+:root {
+    --headfoot-background-color: orangered;
+    --headfoot-font-color: ghostwhite;
+}
+
 .center-text {
     text-align: center;
 }
 
 .blood {
-    color: red;
+    background-color: red;
 }
 
-.food-category-name {
-    color: royalblue;
-    font: 25px italic;
+.grass {
+    background-color: greenyellow;
+}
+
+.gem {
+    background-color: cornflowerblue;
+}
+
+/* ##################################   Header & Footer         ################################### */
+
+header {
+    background: var(--headfoot-background-color);
+    height: 60px;
+}
+
+header h1 {
+    color: var(--headfoot-font-color);
+    font-family: "Sofia", sans-serif;
+}
+
+footer {
+    background: var(--headfoot-background-color);
+    height: 200px;
+}
+
+footer div p {
+    color: var(--headfoot-font-color);
+    margin-top: 30px;
+}
+
+/* ##################################   Navigation         ################################### */
+
+nav {
+    background: var(--headfoot-background-color);
+    height: 40px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+/* ##################################   Foods page         ################################### */
+
+.food-category-selector {
+    color: var(--headfoot-font-color);
+    font-family: "Sofia", sans-serif;
+    font-size: 25px;
 }
 
 .food-tag {
     color: cadetblue;
-    font: 30px bold;
+    font-size: 30px;
+    font-family: 'MonteCarlo', cursive;;
 }
 
 .food-item-space {
-    padding: 10px 0 10px 0;
+    margin: 12px;
+    width: 280px;
+    height: 340px;
 }
