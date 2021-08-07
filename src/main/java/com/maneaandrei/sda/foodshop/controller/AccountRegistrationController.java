@@ -2,6 +2,7 @@ package com.maneaandrei.sda.foodshop.controller;
 
 import com.maneaandrei.sda.foodshop.service.AccountService;
 import com.maneaandrei.sda.foodshop.service.dto.AccountDTO;
+import com.maneaandrei.sda.foodshop.service.dto.UserRegistrationDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,8 +23,8 @@ public class AccountRegistrationController {
     }
 
     @ModelAttribute(name = "user")
-    public AccountDTO accountRegistrationDTO() {
-        return new AccountDTO();
+    public UserRegistrationDTO accountRegistrationDTO() {
+        return new UserRegistrationDTO();
     }
 
     @GetMapping
@@ -32,15 +33,15 @@ public class AccountRegistrationController {
     }
 
     @PostMapping
-    public String registerAccount(@ModelAttribute(name = "user") @Valid AccountDTO accountDTO, BindingResult bindingResult) {
-        if (accountService.accountExist(accountDTO.getEmail())) {
+    public String registerAccount(@ModelAttribute(name = "user") @Valid UserRegistrationDTO userRegistrationDTO, BindingResult bindingResult) {
+        if (accountService.accountExist(userRegistrationDTO.getEmail())) {
             bindingResult.rejectValue("login", null, "account already exists");
         }
         if (bindingResult.hasErrors()) {
             return "registration";
         }
 
-        accountService.createAccount(accountDTO);
+        accountService.createAccount(userRegistrationDTO);
 
         return "redirect:/registration?success";
     }

@@ -1,0 +1,27 @@
+@GetMapping("/product/edit/{id}")
+    public String editProduct(@PathVariable("id") long productId, Model model)
+    {
+        Product product = productService.findById(productId);
+        if (product != null)
+        {
+            model.addAttribute("productForm", product);
+            model.addAttribute("categories", categoryService.findAllWithSubcategories());
+            return "edit-product";
+        } else
+        {
+            return "error/404";
+        }
+    }
+
+    @PostMapping("/product/edit/{id}")
+    public String editProduct(@PathVariable("id") long productId, @ModelAttribute("productForm") Product productForm, BindingResult bindingResult, Model model)
+    {
+        if (bindingResult.hasErrors())
+        {
+            model.addAttribute("method", "edit");
+            return "edit-product";
+        }
+        productService.edit(productId, productForm);
+
+        return "redirect:/home";
+    }

@@ -79,23 +79,24 @@ public class FoodController {
     @GetMapping("/edit/{id}")
     public String showEditResidenceForm(@PathVariable(value = "id") Long id, Model model) {
         Food food = foodService.findById(id).get(); // convert to DTO
-
         FoodDTO foodDTO = foodService.createFoodDTO(food);
+        model.addAttribute("food", foodDTO); // insert foodDTO?
 
-        model.addAttribute("foods", food); // insert foodDTO?
+        List<FoodCategory> food_categories = foodCategoryService.findAll();
+        model.addAttribute("food_categories", food_categories);
+
         return "edit-food";
     }
 
-    @PostMapping("/update/{id}")
-    public String updateResidence(@PathVariable(value = "id") Long id, @Valid Food food,
+    @PostMapping("/edit/{id}")
+    public String updateResidence(@PathVariable(value = "id") Long id, @Valid FoodDTO foodDTO,
                                   BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "edit-food";
         }
-        FoodDTO foodDTO = foodService.createFoodDTO(food);
-        foodService.save(foodDTO);
-        List<Food> foods = foodService.findAll();
-        model.addAttribute("foods", foods);
+        foodService.update(foodDTO);
+
+
         return "redirect:/foods";
     }
 

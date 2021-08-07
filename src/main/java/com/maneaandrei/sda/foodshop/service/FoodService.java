@@ -35,6 +35,20 @@ public class FoodService {
         foodRepository.save(food);
     }
 
+    public void update(FoodDTO foodDTO) {
+        Food food = foodRepository.findById(foodDTO.getId()).orElseThrow();
+        food.setName(foodDTO.getName());
+        food.setDescription(foodDTO.getDescription());
+        food.setPrice(foodDTO.getPrice());
+        food.setCurrency(foodDTO.getCurrency());
+        food.setThumbnail(foodDTO.getThumbnail());
+        food.setFoodCategory(foodCategoryRepository.findById(foodDTO.getFoodCategoryId()).orElse(null));
+
+        foodRepository.save(food);
+    }
+
+
+
     public FoodDTO createFoodDTO(Food food) {
         FoodDTO foodDTO = new FoodDTO();
         foodDTO.setId(food.getId());
