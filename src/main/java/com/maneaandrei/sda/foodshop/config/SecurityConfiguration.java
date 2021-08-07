@@ -1,5 +1,6 @@
 package com.maneaandrei.sda.foodshop.config;
 
+import com.maneaandrei.sda.foodshop.model.Role;
 import com.maneaandrei.sda.foodshop.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -24,9 +25,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/js/**",
                         "/css/**",
                         "/img/**",
-                        "/webjars/**",
-                        "/foods"
+                        "/webjars/**"
                 ).permitAll()
+                .antMatchers("/foods").permitAll() // pagini publice
+                .antMatchers("/edit/**", "/add-food").hasAuthority(Role.MANAGER.name()) // pagini pt admin
+                .antMatchers("/view-order").hasAuthority(Role.CUSTOMER.name()) // pagini pt customer
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()

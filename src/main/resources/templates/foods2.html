@@ -17,6 +17,7 @@
             <a href="/login" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Login</a>
             <a href="/registration" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i> Register</a>
             <a href="/registration" class="btn btn-warning"><i class="fas fa-cart-plus"></i> My Orders</a>
+            <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
         </div>
     </div>
 
@@ -42,6 +43,7 @@
         <div class="center-text">
             <div th:each="food : ${foods}">
                 <div th:if="${food.getFoodCategory().getId()==food_category.id}" class=" food-item-space">
+                    <!--                     -->
                     <div sec:authorize="hasAuthority('MANAGER')">
                         <a th:href="@{/edit/{id}(id=${food.id})}" class="btn btn-success"><i class="fas fa-edit"></i>Edit Food</a>
                         <a th:href="@{/delete/{id}(id=${food.id})}" class="btn btn-danger"><i class="fas fa-trash-alt"></i>Delete Food</a>

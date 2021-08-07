@@ -6,6 +6,8 @@ import com.maneaandrei.sda.foodshop.model.Role;
 import com.maneaandrei.sda.foodshop.repository.AccountRepository;
 import com.maneaandrei.sda.foodshop.repository.CustomerRepository;
 import com.maneaandrei.sda.foodshop.service.dto.UserRegistrationDTO;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,6 +18,8 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 @Service
 public class AccountService implements UserDetailsService {
@@ -36,8 +40,13 @@ public class AccountService implements UserDetailsService {
             throw new UsernameNotFoundException("Invalid username or password");
         }
 
-        return new User(account.getEmail(), account.getPassword(), new ArrayList<>());
+        return new User(account.getEmail(), account.getPassword(), mapRolesToAuthorities(account.getRole()));
     }
+
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Role role) {
+        return Collections.singletonList(new SimpleGrantedAuthority(role.name()));
+    }
+
 
     public void createAccount(UserRegistrationDTO userRegistrationDTO) {
         Account account = new Account();
