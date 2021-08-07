@@ -7,6 +7,7 @@ import com.maneaandrei.sda.foodshop.service.dto.FoodDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -27,7 +28,7 @@ public class FoodService {
         Food food = new Food();
         food.setName(foodDTO.getName());
         food.setDescription(foodDTO.getDescription());
-        food.setPrice(foodDTO.getPrice());
+        food.setPrice(new BigDecimal(foodDTO.getPrice()));
         food.setCurrency(foodDTO.getCurrency());
         food.setThumbnail(foodDTO.getThumbnail());
         food.setFoodCategory(foodCategoryRepository.findById(foodDTO.getFoodCategoryId()).orElse(null));
@@ -39,7 +40,7 @@ public class FoodService {
         Food food = foodRepository.findById(foodDTO.getId()).orElseThrow();
         food.setName(foodDTO.getName());
         food.setDescription(foodDTO.getDescription());
-        food.setPrice(foodDTO.getPrice());
+        food.setPrice(new BigDecimal(foodDTO.getPrice()));
         food.setCurrency(foodDTO.getCurrency());
         food.setThumbnail(foodDTO.getThumbnail());
         food.setFoodCategory(foodCategoryRepository.findById(foodDTO.getFoodCategoryId()).orElse(null));
@@ -56,7 +57,7 @@ public class FoodService {
         foodDTO.setDescription(food.getDescription());
         foodDTO.setThumbnail(food.getThumbnail());
         foodDTO.setCurrency(food.getCurrency());
-        foodDTO.setPrice(food.getPrice());
+        foodDTO.setPrice(food.getPrice().doubleValue());
         foodDTO.setFoodCategoryId(food.getFoodCategory().getId());
 
         return foodDTO;

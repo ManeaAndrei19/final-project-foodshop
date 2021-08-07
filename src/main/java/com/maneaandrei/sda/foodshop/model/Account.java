@@ -1,6 +1,8 @@
 package com.maneaandrei.sda.foodshop.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
 @Entity
@@ -11,6 +13,8 @@ public class Account {
     @Column(name = "id")
     private Long id;
 
+    @Email
+    @NotBlank
     @Column(name = "email")
     private String email;
 

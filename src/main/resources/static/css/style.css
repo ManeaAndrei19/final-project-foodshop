@@ -1,6 +1,16 @@
 /* ##################################   Initial imports   ################################### */
-@import url('https://fonts.googleapis.com/css2?family=MonteCarlo&family=Sofia&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Black+Ops+One&family=Bungee+Shade&family=Fredericka+the+Great&family=Iceland&family=Satisfy&family=Sofia&display=swap');
 
+/*
+font-family: 'Berkshire Swash', cursive;
+font-family: 'Black Ops One', cursive;
+font-family: 'Bungee Shade', cursive;
+font-family: 'Fredericka the Great', cursive;
+font-family: 'Iceland', cursive;
+font-family: 'Satisfy', cursive;
+font-family: 'Sofia', cursive;
+
+*/
 
 /* ##################################   Basic declarations   ################################### */
 
@@ -45,10 +55,14 @@ header {
     height: 60px;
 }
 
-header h1 {
+header h1 a {
     color: var(--headfoot-font-color);
-    font-family: "Sofia", sans-serif;
-    font-size: 30px;
+    font-family: 'Fredericka the Great', cursive;
+    font-size: 40px;
+}
+
+header h1:hover {
+    transform: scale(1.5);
 }
 
 footer {
@@ -60,24 +74,28 @@ footer h1 {
     font-family: 'MonteCarlo', cursive;
     color: var(--headfoot-font-color);
 }
+
 footer div p {
     color: var(--headfoot-font-color);
 }
 
 /* ##################################   Navigation         ################################### */
 
-nav {
+.buttons-navigation {
+    display: flex;
+    flex-direction: column;
+}
+
+.food-category-navigation {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
     background: var(--headfoot-background-color);
     height: 40px;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-}
-
-flex-navigation {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
 }
 
 /* ##################################   Foods page         ################################### */
@@ -88,7 +106,7 @@ flex-navigation {
     font-size: 25px;
 }
 
-.food-tag {
+.food-category-name {
     color: cadetblue;
     font-size: 30px;
     font-family: 'MonteCarlo', cursive;;
@@ -116,6 +134,17 @@ flex-navigation {
 
 .food-img {
     grid-area: food-img;
+    transition: transform .2s;
+
+}
+
+.food-img :hover {
+    transform: scale(1.5);
+}
+
+.food-img img {
+    height: auto;
+    width: 100%;
 }
 
 .food-info {
@@ -123,7 +152,7 @@ flex-navigation {
     /*padding: 25px 0px;*/
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 770px) {
     .food-item {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -137,11 +166,63 @@ flex-navigation {
 
     .food-img {
         grid-area: food-img;
+        transition: transform .2s;
+    }
+
+    .food-img :hover {
+        transform: scale(1.5);
+    }
+
+    .food-img img {
+        width: 350px;
+        height: 250px;
     }
 
     .food-info {
         grid-area: food-info;
         padding: 25px 0px;
     }
+}
+
+/* ##################################   Divider     ################################### */
+
+.wrapper
+{
+    padding-bottom: 40px;
+}
+
+.divider
+{
+    position: relative;
+    margin-top: 40px;
+    height: 1px;
+}
+
+.div-transparent:before
+{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, rgb(48,49,51), transparent);
+}
+
+.div-dot:after
+{
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: -9px;
+    left: calc(50% - 9px);
+    width: 18px;
+    height: 18px;
+    background-color: orangered;
+    border: 1px solid rgb(48,49,51);
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 2px white,
+    0 0 0 4px white;
 }
 

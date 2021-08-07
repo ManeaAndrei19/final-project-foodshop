@@ -2,6 +2,9 @@ package com.maneaandrei.sda.foodshop.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "food")
@@ -14,11 +17,13 @@ public class Food {
     @Column(name = "name")
     private String name;
 
+    @NotBlank
+    @Size(min = 5,max = 300)
     @Column(name = "description")
     private String description;
 
     @Column(name = "price")
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "currency")
     private String currency;
@@ -30,7 +35,7 @@ public class Food {
     @JoinColumn(name = "food_category_id")
     private FoodCategory foodCategory;
 
-    public Food(String name, String description, Double price, String currency, String thumbnail, FoodCategory foodCategory) {
+    public Food(String name, String description, BigDecimal price, String currency, String thumbnail, FoodCategory foodCategory) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -67,11 +72,11 @@ public class Food {
         this.description = description;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
