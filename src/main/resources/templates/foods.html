@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -58,7 +58,6 @@
         <div class="center-text">
             <div th:each="food : ${foods}">
                 <div th:if="${food.getFoodCategory().getId()==food_category.id}" class=" food-item-space">
-                    <!--                     -->
                     <div sec:authorize="hasAuthority('MANAGER')">
                         <a th:href="@{/edit/{id}(id=${food.id})}" class="btn btn-success"><i class="fas fa-edit"></i>Edit
                             Food</a>
@@ -67,12 +66,12 @@
                     </div>
                     <div class="food-item">
                         <div class="food-img">
-                            <img th:src="${food.thumbnail}" th:alt="${food.name}" >
+                            <img th:src="${food.thumbnail}" th:alt="${food.name}">
                         </div>
                         <div class="food-info">
                             <h2 th:text="${food.name}"></h2>
-                            <h2 th:text="${food.description}"></h2>
-                            <h2 th:text="${food.price}+${food.currency}"></h2>
+                            <h2 th:text="'Ingredients: '+ ${food.description}"></h2>
+                            <h2 th:text="'Price: '+ ${food.price}+${food.currency}"></h2>
                             <button type="button" class="btn btn-warning"><i class="fas fa-cart-plus"></i> Add To Cart
                             </button>
                         </div>
