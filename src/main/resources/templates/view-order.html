@@ -1,10 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
-    <meta charset="UTF-8">
-    <title>View Food</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>My Orders</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<header>
+    <div class="container center-text">
+        <h1><a th:href="@{/foods}">Andrei's Bistro</a></h1>
+    </div>
+</header>
+<div class="container">
+    <div class="text-center buttons-navigation grass" sec:authorize="hasAuthority('MANAGER')">
+        Div You are Logged in as MANAGER
+    </div>
+    <div class="text-center buttons-navigation gem" sec:authorize="hasAuthority('CUSTOMER')">
+        Div You are Logged in as CUSTOMER
+    </div>
+    <nav>
+        <div sec:authorize="isAnonymous()" class="buttons-navigation">
+            <a href="/login" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="/registration" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i> Register</a>
+        </div>
+        <div sec:authorize="isAuthenticated()" class="buttons-navigation">
+            <a th:href="@{/cart}" class="btn btn-warning"><i class="fas fa-cart-plus"></i> My Cart</a>
+            <a th:href="@{/view-order}" class="btn btn-info"><i class="fas fa-cart-plus"></i> My Orders</a>
+            <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+        </div>
+    </nav>
 
+
+    <nav class="food-category-navigation">
+
+        <div th:each="food_category : ${food_categories}">
+            <a th:href="${food_category.getFoodHash()}" th:text="${food_category.getFoodCategoryName()}"
+               class="food-category-selector"></a>
+        </div>
+    </nav>
+
+    <div class="text-center stick" sec:authorize="hasAuthority('MANAGER')">
+        <a href="/add-food" class="btn btn-primary w-max"><i class="fas fa-utensils"></i> Add Food</a>
+    </div>
+
+    <div th:each="food_category : ${food_categories}">
+
+        <h1 th:id="${food_category.getFoodCategoryName()}" th:text="${food_category.getFoodCategoryName()}"
+            class="center-text food-category-name"></h1>
+
+        <div class="wrapper">
+            <div class="divider div-transparent div-dot"></div>
+        </div>
+
+        <div class="center-text">
+            <div th:each="food : ${foods}">
+                <div th:if="${food.getFoodCategory().getId()==food_category.id}" class=" food-item-space">
+                    <div sec:authorize="hasAuthority('MANAGER')">
+                        <a th:href="@{/edit/{id}(id=${food.id})}" class="btn btn-success"><i class="fas fa-edit"></i>Edit
+                            Food</a>
+                        <a th:href="@{/delete/{id}(id=${food.id})}" class="btn btn-danger"><i
+                                class="fas fa-trash-alt"></i>Delete Food</a>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-img">
+                            <img th:src="${food.thumbnail}" th:alt="${food.name}" >
+                        </div>
+                        <div class="food-info">
+                            <h2 th:text="${food.name}" class="food-name"><i class="fas fa-angle-double-left"></i><i class="fas fa-angle-double-right"></i></h2>
+                            <h2 th:text="'Ingredients: '+ ${food.description}"></h2>
+                            <h2 th:text="'Price: '+ ${food.price}+${food.currency}"></h2>
+
+                            <a th:href="${'/cart/add/' + food.getId()}" class="btn btn-warning"><i class="fas fa-cart-plus"></i> Add To Cart</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<footer>
+    <div class="container center-text">
+        <h1> Information</h1>
+        <p><i class="fas fa-mobile-alt"></i> Phone: 0754848937</p>
+        <p><i class="far fa-envelope"></i> Email: maneaandrei19@yahoo.com</p>
+    </div>
+</footer>
 </body>
 </html>

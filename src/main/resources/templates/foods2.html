@@ -28,7 +28,8 @@
             <a href="/registration" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i> Register</a>
         </div>
         <div sec:authorize="isAuthenticated()" class="buttons-navigation">
-            <a href="/registration" class="btn btn-warning"><i class="fas fa-cart-plus"></i> My Orders</a>
+            <a th:href="@{/cart}" class="btn btn-warning"><i class="fas fa-cart-plus"></i> My Cart</a>
+            <a th:href="@{/view-order}" class="btn btn-info"><i class="fas fa-cart-plus"></i> My Orders</a>
             <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
         </div>
     </nav>
@@ -72,7 +73,8 @@
                             <h2 th:text="${food.name}" class="food-name"><i class="fas fa-angle-double-left"></i><i class="fas fa-angle-double-right"></i></h2>
                             <h2 th:text="'Ingredients: '+ ${food.description}"></h2>
                             <h2 th:text="'Price: '+ ${food.price}+${food.currency}"></h2>
-                            <a href="#Cart" class="btn btn-warning"><i class="fas fa-cart-plus"></i> Add To Cart</a>
+
+                            <a th:href="${'/cart/add/' + food.getId()}" class="btn btn-warning"><i class="fas fa-cart-plus"></i> Add To Cart</a>
                             </button>
                         </div>
                     </div>

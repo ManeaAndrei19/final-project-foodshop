@@ -24,6 +24,15 @@ font-family: 'Sofia', cursive;
 
 body {
     background-color: var(--body-main-color);
+    min-height:100vh;
+    margin:0;
+    position:relative;
+}
+
+body::after {
+    content: '';
+    display: block;
+    height: 50px; /* Set same as footer's height */
 }
 
 
@@ -71,6 +80,9 @@ header h1:hover {
 footer {
     background: var(--headfoot-background-color);
     height: 200px;
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*width: 100%;*/
 }
 
 footer h1 {
