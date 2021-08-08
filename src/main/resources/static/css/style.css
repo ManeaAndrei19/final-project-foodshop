@@ -17,14 +17,19 @@ font-family: 'Sofia', cursive;
 :root {
     --headfoot-background-color: orangered;
     --headfoot-font-color: ghostwhite;
+    --body-main-color: tomato;
+    --food-font-color: wheat;
 }
 
+
+body {
+    background-color: var(--body-main-color);
+}
+
+
+/* ##################################   Miscellaneous         ################################### */
 .center-text {
     text-align: center;
-}
-
-.blood {
-    background-color: red;
 }
 
 .grass {
@@ -35,9 +40,6 @@ font-family: 'Sofia', cursive;
     background-color: cornflowerblue;
 }
 
-
-/* ##################################   Miscellaneous         ################################### */
-
 .w-max {
     width: 100%;
 }
@@ -46,6 +48,7 @@ font-family: 'Sofia', cursive;
     position: -webkit-sticky;
     position: sticky;
     top: 40px;
+    z-index: 9;
 }
 
 /* ##################################   Header & Footer         ################################### */
@@ -96,6 +99,8 @@ footer div p {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
+    z-index: 9;
+
 }
 
 /* ##################################   Foods page         ################################### */
@@ -135,6 +140,7 @@ footer div p {
 .food-img {
     grid-area: food-img;
     transition: transform .2s;
+    padding-top: 25px;
 
 }
 
@@ -149,7 +155,10 @@ footer div p {
 
 .food-info {
     grid-area: food-info;
-    /*padding: 25px 0px;*/
+    font-family: 'Berkshire Swash', cursive;
+    padding-bottom: 25px;
+    padding-top: 15px;
+    color: var(--food-font-color);
 }
 
 @media only screen and (min-width: 770px) {
@@ -162,6 +171,7 @@ footer div p {
         grid-template-areas:
     "food-img food-info";
         margin: 15px 0px;
+        padding: 25px 0px;
     }
 
     .food-img {
@@ -180,26 +190,28 @@ footer div p {
 
     .food-info {
         grid-area: food-info;
-        padding: 25px 0px;
+        font-family: 'Berkshire Swash', cursive;
+        color: var(--food-font-color);
     }
+}
+
+.food-name {
+    font-size: 40px;
 }
 
 /* ##################################   Divider     ################################### */
 
-.wrapper
-{
+.wrapper {
     padding-bottom: 40px;
 }
 
-.divider
-{
+.divider {
     position: relative;
     margin-top: 40px;
     height: 1px;
 }
 
-.div-transparent:before
-{
+.div-transparent:before {
     content: "";
     position: absolute;
     top: 0;
@@ -207,11 +219,10 @@ footer div p {
     right: 5%;
     width: 90%;
     height: 1px;
-    background-image: linear-gradient(to right, transparent, rgb(48,49,51), transparent);
+    background-image: linear-gradient(to right, transparent, var(--food-font-color), transparent);
 }
 
-.div-dot:after
-{
+.div-dot:after {
     content: "";
     position: absolute;
     z-index: 1;
@@ -220,9 +231,13 @@ footer div p {
     width: 18px;
     height: 18px;
     background-color: orangered;
-    border: 1px solid rgb(48,49,51);
+    border: 3px solid var(--food-font-color);
     border-radius: 50%;
-    box-shadow: inset 0 0 0 2px white,
-    0 0 0 4px white;
+    box-shadow: inset 0 0 0 2px var(--body-main-color),
+    0 0 0 4px var(--body-main-color);
 }
+
+/* ##################################   Shopping Cart    ################################### */
+
+
 

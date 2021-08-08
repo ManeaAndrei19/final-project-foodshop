@@ -9,4 +9,5 @@ public interface AccountRepository extends CrudRepository<Account, Long> {
      * TODO: To be completed
      */
     Account findByEmail(String email);
+
 }

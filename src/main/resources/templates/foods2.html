@@ -66,13 +66,13 @@
                     </div>
                     <div class="food-item">
                         <div class="food-img">
-                            <img th:src="${food.thumbnail}" th:alt="${food.name}">
+                            <img th:src="${food.thumbnail}" th:alt="${food.name}" >
                         </div>
                         <div class="food-info">
-                            <h2 th:text="${food.name}"></h2>
+                            <h2 th:text="${food.name}" class="food-name"><i class="fas fa-angle-double-left"></i><i class="fas fa-angle-double-right"></i></h2>
                             <h2 th:text="'Ingredients: '+ ${food.description}"></h2>
                             <h2 th:text="'Price: '+ ${food.price}+${food.currency}"></h2>
-                            <button type="button" class="btn btn-warning"><i class="fas fa-cart-plus"></i> Add To Cart
+                            <a href="#Cart" class="btn btn-warning"><i class="fas fa-cart-plus"></i> Add To Cart</a>
                             </button>
                         </div>
                     </div>

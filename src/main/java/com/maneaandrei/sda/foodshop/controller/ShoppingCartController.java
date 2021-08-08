@@ -41,7 +41,7 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/cart/remove/{id}")
-    public String removeProductFromCart(@PathVariable("id") long id)
+    public String removeProductFromCart(@PathVariable("id") Long id)
     {
         Food food = foodService.findById(id).orElse(null);
         if (food != null)
