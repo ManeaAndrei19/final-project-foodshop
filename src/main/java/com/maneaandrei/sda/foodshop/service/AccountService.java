@@ -6,6 +6,7 @@ import com.maneaandrei.sda.foodshop.model.Role;
 import com.maneaandrei.sda.foodshop.repository.AccountRepository;
 import com.maneaandrei.sda.foodshop.repository.CustomerRepository;
 import com.maneaandrei.sda.foodshop.service.dto.UserRegistrationDTO;
+import com.maneaandrei.sda.foodshop.service.mail.MailService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,9 +16,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -26,11 +27,13 @@ public class AccountService implements UserDetailsService {
     private final AccountRepository accountRepository;
     private final CustomerRepository customerRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final MailService mailService;
 
-    public AccountService(AccountRepository accountRepository, CustomerRepository customerRepository, BCryptPasswordEncoder passwordEncoder) {
+    public AccountService(AccountRepository accountRepository, CustomerRepository customerRepository, BCryptPasswordEncoder passwordEncoder, MailService mailService) {
         this.accountRepository = accountRepository;
         this.customerRepository = customerRepository;
         this.passwordEncoder = passwordEncoder;
+        this.mailService = mailService;
     }
 
     @Override
@@ -62,6 +65,12 @@ public class AccountService implements UserDetailsService {
         customer.setAddress(userRegistrationDTO.getAddress());
         customer.setEmail(userRegistrationDTO.getEmail());
         customerRepository.save(customer);
+
+        try {
+            mailService.sendMail("andrei@food.com", account.getEmail(),"Account successfully created on Andrei's Food application", "Thank you for your registration!");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
     public Boolean accountExist(String email) {

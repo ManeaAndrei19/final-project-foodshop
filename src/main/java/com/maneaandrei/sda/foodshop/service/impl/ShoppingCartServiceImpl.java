@@ -4,6 +4,7 @@ package com.maneaandrei.sda.foodshop.service.impl;
 import com.maneaandrei.sda.foodshop.model.*;
 import com.maneaandrei.sda.foodshop.repository.*;
 import com.maneaandrei.sda.foodshop.service.ShoppingCartService;
+import com.maneaandrei.sda.foodshop.service.mail.MailService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
+import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 
 import java.math.BigDecimal;
@@ -27,15 +29,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final OrderRepository orderRepository;
     private final OrderLineRepository orderLineRepository;
     private final BillRepository billRepository;
+    private final MailService mailService;
 
     private Map<Food, Integer> cart = new LinkedHashMap<>();
 
-    public ShoppingCartServiceImpl(AccountRepository accountRepository, CustomerRepository customerRepository, OrderRepository orderRepository, OrderLineRepository orderLineRepository, BillRepository billRepository) {
+    public ShoppingCartServiceImpl(AccountRepository accountRepository, CustomerRepository customerRepository, OrderRepository orderRepository, OrderLineRepository orderLineRepository, BillRepository billRepository, MailService mailService) {
         this.accountRepository = accountRepository;
         this.customerRepository = customerRepository;
         this.orderRepository = orderRepository;
         this.orderLineRepository = orderLineRepository;
         this.billRepository = billRepository;
+        this.mailService = mailService;
     }
 
     @Override
@@ -130,5 +134,15 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         cart.clear();
 
         // to add MAIL PROP to account EMAIL
+        try {
+            mailService.sendMail("andrei@food.com", principal.getUsername(), "Order was successfully created ",
+                    "Order details: " +
+                            "\nOrder id: " + order.getId() +
+                            "\nOrder creation date: " + order.getCreationDate() +
+                            "\nOrder address: " + order.getAddress() +
+                            "\nTotal Price: " + order.getBill().getTotalPrice() + order.getBill().getCurrency());
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 }

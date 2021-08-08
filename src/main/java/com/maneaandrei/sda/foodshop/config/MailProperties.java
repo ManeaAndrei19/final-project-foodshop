@@ -1,12 +1,12 @@
 package com.maneaandrei.sda.foodshop.config;
 
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "mail.smtp")
-public class MailProperties {
+public class MailProperties
+{
     private String username;
     private String password;
     private boolean auth;
@@ -15,47 +15,58 @@ public class MailProperties {
     private Integer port;
     private String trust;
 
-    public String getUsername() {
+    public String getUsername()
+    {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(String username)
+    {
         this.username = username;
     }
 
-    public String getPassword() {
+    public String getPassword()
+    {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password)
+    {
         this.password = password;
     }
 
-    public boolean getAuth() {
+    public boolean isAuth()
+    {
         return auth;
     }
 
-    public void setAuth(boolean auth) {
+    public void setAuth(boolean auth)
+    {
         this.auth = auth;
     }
 
-    public boolean getStarttls() {
+    public boolean isStarttls()
+    {
         return starttls;
     }
 
-    public void setStarttls(boolean starttls) {
+    public void setStarttls(boolean starttls)
+    {
         this.starttls = starttls;
     }
 
-    public String getHost() {
+    public String getHost()
+    {
         return host;
     }
 
-    public void setHost(String host) {
+    public void setHost(String host)
+    {
         this.host = host;
     }
 
-    public Integer getPort() {
+    public Integer getPort()
+    {
         return port;
     }
 
@@ -63,11 +74,13 @@ public class MailProperties {
         this.port = port;
     }
 
-    public String getTrust() {
+    public String getTrust()
+    {
         return trust;
     }
 
-    public void setTrust(String trust) {
-        this.trust = trust;
+    public void setTrust(String sslTrust)
+    {
+        this.trust = sslTrust;
     }
 }
