@@ -5,6 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Foods</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link rel="stylesheet" href="css/style.css">
@@ -15,15 +16,15 @@
         <h1><a th:href="@{/foods}">Andrei's Bistro</a></h1>
     </div>
 </header>
-<div class="container">
+<main class="container">
     <div class="text-center buttons-navigation grass" sec:authorize="hasAuthority('MANAGER')">
-        Div You are Logged in as MANAGER
+        You are Logged in as MANAGER
         <h2>
             Welcome <span sec:authentication="principal.username">User</span>
         </h2>
     </div>
     <div class="text-center buttons-navigation gem" sec:authorize="hasAuthority('CUSTOMER')">
-        Div You are Logged in as CUSTOMER
+        You are Logged in as CUSTOMER
         <h2>
             Welcome <span sec:authentication="principal.username">User</span>
         </h2>
@@ -34,9 +35,9 @@
             <a href="/registration" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i> Register</a>
         </div>
         <div sec:authorize="isAuthenticated()" class="buttons-navigation">
-            <a th:href="@{/cart}" class="btn btn-warning"><i class="fas fa-cart-plus"></i> My Cart</a>
+            <a th:href="@{/cart}" class="btn btn-warning"><i class="fas fa-shopping-cart"></i> My Cart</a>
             <a th:href="@{/view-order}" class="btn btn-info"><i class="fas fa-cart-plus"></i> My Orders</a>
-            <a th:href="@{/logout}" class="btn btn-danger">Logout</a>
+            <a th:href="@{/logout}" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </div>
     </nav>
 
@@ -48,7 +49,9 @@
                class="food-category-selector"></a>
         </div>
     </nav>
-
+    <button onclick="topFunction()" id="myBtn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
     <div class="text-center stick" sec:authorize="hasAuthority('MANAGER')">
         <a href="/add-food" class="btn btn-primary w-max"><i class="fas fa-utensils"></i> Add Food</a>
     </div>
@@ -77,8 +80,8 @@
                         </div>
                         <div class="food-info">
                             <h2 th:text="${food.name}" class="food-name"><i class="fas fa-angle-double-left"></i><i class="fas fa-angle-double-right"></i></h2>
-                            <h2 th:text="'Ingredients: '+ ${food.description}"></h2>
-                            <h2 th:text="'Price: '+ ${food.price}+${food.currency}"></h2>
+                            <h3 th:text="'Ingredients: '+ ${food.description}"></h3>
+                            <h3 th:text="'Price: '+ ${food.price}+${food.currency}"></h3>
 
                             <a th:href="${'/cart/add/' + food.getId()}" class="btn btn-warning"><i class="fas fa-cart-plus"></i> Add To Cart</a>
                             </button>
@@ -89,13 +92,19 @@
         </div>
     </div>
 
-</div>
+</main>
+
 <footer>
     <div class="container center-text">
         <h1> Information</h1>
+        <p>Copyright &copy 2021, Andrei's Bistro Inc. All rights reserved.</p>
         <p><i class="fas fa-mobile-alt"></i> Phone: 0754848937</p>
         <p><i class="far fa-envelope"></i> Email: maneaandrei19@yahoo.com</p>
     </div>
 </footer>
+
+
+<!-- JS Scrips -->
+<script src="js/script.js"></script>
 </body>
 </html>

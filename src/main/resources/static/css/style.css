@@ -19,6 +19,7 @@ font-family: 'Sofia', cursive;
     --headfoot-font-color: ghostwhite;
     --body-main-color: tomato;
     --food-font-color: wheat;
+    --warning-color: #ffc107;
 }
 
 
@@ -29,11 +30,7 @@ body {
     position:relative;
 }
 
-body::after {
-    content: '';
-    display: block;
-    height: 50px; /* Set same as footer's height */
-}
+
 
 
 /* ##################################   Miscellaneous         ################################### */
@@ -60,11 +57,15 @@ body::after {
     z-index: 9;
 }
 
+.full-width {
+    width: 100%;
+}
+
 /* ##################################   Header & Footer         ################################### */
 
 header {
     background: var(--headfoot-background-color);
-    height: 60px;
+    padding: 5px;
 }
 
 header h1 a {
@@ -79,26 +80,30 @@ header h1:hover {
 
 footer {
     background: var(--headfoot-background-color);
-    height: 200px;
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*width: 100%;*/
+    padding: 20px;
 }
 
 footer h1 {
-    font-family: 'MonteCarlo', cursive;
+    font-family: 'Fredericka the Great', cursive;
     color: var(--headfoot-font-color);
 }
 
 footer div p {
     color: var(--headfoot-font-color);
+    font-family: 'Black Ops One', cursive;
+}
+
+main {
+    min-height: calc(100vh - 68px - 176px);
 }
 
 /* ##################################   Navigation         ################################### */
 
+
 .buttons-navigation {
     display: flex;
     flex-direction: column;
+    font-family: 'Black Ops One', cursive;
 }
 
 .food-category-navigation {
@@ -119,14 +124,15 @@ footer div p {
 
 .food-category-selector {
     color: var(--headfoot-font-color);
-    font-family: "Sofia", sans-serif;
+    font-family: 'Black Ops One', cursive;
     font-size: 25px;
 }
 
 .food-category-name {
-    color: cadetblue;
-    font-size: 30px;
-    font-family: 'MonteCarlo', cursive;;
+    font-family: 'Black Ops One', cursive;
+    text-decoration: underline;
+    color: var(--headfoot-font-color);
+    font-size: 40px;
 }
 
 .food-item-space {
@@ -167,7 +173,7 @@ footer div p {
 
 .food-info {
     grid-area: food-info;
-    font-family: 'Berkshire Swash', cursive;
+    font-family: 'Black Ops One', cursive;
     padding-bottom: 25px;
     padding-top: 15px;
     color: var(--food-font-color);
@@ -202,7 +208,7 @@ footer div p {
 
     .food-info {
         grid-area: food-info;
-        font-family: 'Berkshire Swash', cursive;
+        font-family: 'Black Ops One', cursive;
         color: var(--food-font-color);
     }
 }
@@ -251,5 +257,37 @@ footer div p {
 
 /* ##################################   Shopping Cart    ################################### */
 
+.cart-title {
+    font-family: 'Black Ops One', cursive;
+    color: var(--headfoot-font-color);
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+.cart-font {
+    font-family: 'Black Ops One', cursive;
+    color: var(--headfoot-font-color);
+}
+
+/* ##################################   Back Top Button   ################################### */
 
 
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: var(--warning-color);
+    color: var(--headfoot-font-color);
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 25%;
+}
+
+#myBtn:hover {
+    background-color: #e89a1d;
+}

@@ -6,6 +6,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- CSS Stylesheets -->
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
     <link rel="stylesheet" href="css/style.css">
     <title>Registration</title>
@@ -13,11 +14,12 @@
 
 
 <body>
-
-<br>
-<br>
-
-<div class="container">
+<header>
+    <div class="container center-text">
+        <h1><a th:href="@{/foods}">Andrei's Bistro</a></h1>
+    </div>
+</header>
+<main class="container">
     <h2>
         Welcome <span sec:authentication="principal.username">User</span>
     </h2>
@@ -25,12 +27,20 @@
         <a th:href="@{/logout}" class="btn btn-primary">Logout</a>
         <a th:href="@{/foods}" class="btn btn-success">Foods</a>
     </p>
-</div>
-
+</main>
+<footer>
+    <div class="container center-text">
+        <h1> Information</h1>
+        <p>Copyright &copy 2021, Andrei's Bistro Inc. All rights reserved.</p>
+        <p><i class="fas fa-mobile-alt"></i> Phone: 0754848937</p>
+        <p><i class="far fa-envelope"></i> Email: maneaandrei19@yahoo.com</p>
+    </div>
+</footer>
 
 
 <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
 
 </body>
 </html>

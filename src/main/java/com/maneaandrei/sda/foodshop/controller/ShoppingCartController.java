@@ -21,8 +21,7 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/cart")
-    public String cart(Model model)
-    {
+    public String cart(Model model) {
         model.addAttribute("products", shoppingCartService.productsInCart());
         model.addAttribute("totalPrice", shoppingCartService.totalPrice());
 
@@ -30,38 +29,32 @@ public class ShoppingCartController {
     }
 
     @GetMapping("/cart/add/{id}")
-    public String addProductToCart(@PathVariable("id") Long id)
-    {
+    public String addProductToCart(@PathVariable("id") Long id) {
         Food food = foodService.findById(id).orElse(null);
-        if (food != null)
-        {
+        if (food != null) {
             shoppingCartService.addProduct(food);
         }
         return "redirect:/foods";
     }
 
     @GetMapping("/cart/remove/{id}")
-    public String removeProductFromCart(@PathVariable("id") Long id)
-    {
+    public String removeProductFromCart(@PathVariable("id") Long id) {
         Food food = foodService.findById(id).orElse(null);
-        if (food != null)
-        {
+        if (food != null) {
             shoppingCartService.removeProduct(food);
         }
         return "redirect:/cart";
     }
 
     @GetMapping("/cart/clear")
-    public String clearProductsInCart()
-    {
+    public String clearProductsInCart() {
         shoppingCartService.clearProducts();
 
         return "redirect:/cart";
     }
 
     @GetMapping("/cart/checkout")
-    public String cartCheckout()
-    {
+    public String cartCheckout() {
         shoppingCartService.cartCheckout();
         return "redirect:/cart";
     }
