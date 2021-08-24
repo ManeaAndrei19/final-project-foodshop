@@ -1,0 +1,36 @@
+.order-table{
+    font-size: 20px;
+    width: 100%;
+    font-family: 'Black Ops One', cursive;
+    border-collapse: collapse;
+}
+
+.order-table td, .order-table th {
+    border: 5px solid var(--food-font-color);
+    padding: 8px;
+}
+
+.order-table th {
+    color: var(--body-main-color-dark);
+    text-align: center;
+}
+
+.order-table td {
+    color: var(--food-font-color);
+    text-align: left;
+}
+
+.order-table .order-table-head {
+    background: var(--food-font-color);
+}
+
+.order-table .order-table-info:nth-child(odd) {
+    background-color: var(--body-main-color-dark);
+}
+
+.order-title{
+    font-family: 'Black Ops One', cursive;
+    color: var(--headfoot-font-color);
+    text-decoration: underline;
+    margin: 15px 0px;
+}

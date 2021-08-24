@@ -16,11 +16,11 @@ public class OrderController {
         this.foodService = foodService;
     }
 
-    @GetMapping("/view-order")
-    public String order(Model model) {
+    @GetMapping("/orders")
+    public String showOrdersPage(Model model) {
         model.addAttribute("orders",orderService.findAll());
 
-        return "view-order";
+        return "orders";
     }
 
 

@@ -13,7 +13,6 @@ public class Bill {
 
     @Column(name = "total_price")
     private Double totalPrice;
-
     @Column(name = "currency")
     private String currency;
 

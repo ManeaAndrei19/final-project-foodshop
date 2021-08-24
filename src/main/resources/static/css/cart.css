@@ -1,0 +1,13 @@
+/* ##################################   Shopping Cart    ################################### */
+
+.cart-title {
+    font-family: 'Black Ops One', cursive;
+    color: var(--headfoot-font-color);
+    text-decoration: underline;
+    margin-top: 10px;
+}
+
+.cart-font {
+    font-family: 'Black Ops One', cursive;
+    color: var(--headfoot-font-color);
+}

@@ -1,0 +1,96 @@
+/* ##################################   Foods page         ################################### */
+
+.food-category-selector {
+    color: var(--headfoot-font-color);
+    font-family: 'Black Ops One', cursive;
+    font-size: 25px;
+}
+
+.food-category-name {
+    font-family: 'Black Ops One', cursive;
+    text-decoration: underline;
+    color: var(--headfoot-font-color);
+    font-size: 40px;
+}
+
+.food-item-space {
+
+    width: auto;
+    /*height: 200px;*/
+}
+
+
+/* ##################################   Foods page  Grid       ################################### */
+.food-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: column;
+    grid-template-areas:
+    "food-img"
+    "food-info";
+    margin: 15px 0px;
+}
+
+.food-img {
+    grid-area: food-img;
+    transition: transform .2s;
+    padding-top: 25px;
+
+}
+
+.food-img :hover {
+    transform: scale(1.5);
+}
+
+.food-img img {
+    height: auto;
+    width: 100%;
+}
+
+.food-info {
+    grid-area: food-info;
+    font-family: 'Black Ops One', cursive;
+    padding-bottom: 25px;
+    padding-top: 15px;
+    color: var(--food-font-color);
+}
+
+@media only screen and (min-width: 770px) {
+    .food-item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 0px 0px;
+        grid-auto-flow: row;
+        grid-template-areas:
+    "food-img food-info";
+        margin: 15px 0px;
+        padding: 25px 0px;
+    }
+
+    .food-img {
+        grid-area: food-img;
+        transition: transform .2s;
+    }
+
+    .food-img :hover {
+        transform: scale(1.5);
+    }
+
+    .food-img img {
+        width: 350px;
+        height: 250px;
+    }
+
+    .food-info {
+        grid-area: food-info;
+        font-family: 'Black Ops One', cursive;
+        color: var(--food-font-color);
+    }
+}
+
+.food-name {
+    font-size: 40px;
+}

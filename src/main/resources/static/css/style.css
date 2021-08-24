@@ -1,6 +1,10 @@
 /* ##################################   Initial imports   ################################### */
 @import url('https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Black+Ops+One&family=Bungee+Shade&family=Fredericka+the+Great&family=Iceland&family=Satisfy&family=Sofia&display=swap');
 
+@import "order.css";
+@import "foods.css";
+@import "cart.css";
+
 /*
 font-family: 'Berkshire Swash', cursive;
 font-family: 'Black Ops One', cursive;
@@ -18,6 +22,7 @@ font-family: 'Sofia', cursive;
     --headfoot-background-color: orangered;
     --headfoot-font-color: ghostwhite;
     --body-main-color: tomato;
+    --body-main-color-dark: #ce361a;
     --food-font-color: wheat;
     --warning-color: #ffc107;
 }
@@ -120,104 +125,11 @@ main {
 
 }
 
-/* ##################################   Foods page         ################################### */
-
-.food-category-selector {
+.buttons-navigation .btn {
     color: var(--headfoot-font-color);
-    font-family: 'Black Ops One', cursive;
-    font-size: 25px;
 }
 
-.food-category-name {
-    font-family: 'Black Ops One', cursive;
-    text-decoration: underline;
-    color: var(--headfoot-font-color);
-    font-size: 40px;
-}
-
-.food-item-space {
-
-    width: auto;
-    /*height: 200px;*/
-}
-
-
-/* ##################################   Foods page  Grid       ################################### */
-.food-item {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: column;
-    grid-template-areas:
-    "food-img"
-    "food-info";
-    margin: 15px 0px;
-}
-
-.food-img {
-    grid-area: food-img;
-    transition: transform .2s;
-    padding-top: 25px;
-
-}
-
-.food-img :hover {
-    transform: scale(1.5);
-}
-
-.food-img img {
-    height: auto;
-    width: 100%;
-}
-
-.food-info {
-    grid-area: food-info;
-    font-family: 'Black Ops One', cursive;
-    padding-bottom: 25px;
-    padding-top: 15px;
-    color: var(--food-font-color);
-}
-
-@media only screen and (min-width: 770px) {
-    .food-item {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr;
-        gap: 0px 0px;
-        grid-auto-flow: row;
-        grid-template-areas:
-    "food-img food-info";
-        margin: 15px 0px;
-        padding: 25px 0px;
-    }
-
-    .food-img {
-        grid-area: food-img;
-        transition: transform .2s;
-    }
-
-    .food-img :hover {
-        transform: scale(1.5);
-    }
-
-    .food-img img {
-        width: 350px;
-        height: 250px;
-    }
-
-    .food-info {
-        grid-area: food-info;
-        font-family: 'Black Ops One', cursive;
-        color: var(--food-font-color);
-    }
-}
-
-.food-name {
-    font-size: 40px;
-}
-
-/* ##################################   Divider     ################################### */
+    /* ##################################   Divider     ################################### */
 
 .wrapper {
     padding-bottom: 40px;
@@ -255,19 +167,6 @@ main {
     0 0 0 4px var(--body-main-color);
 }
 
-/* ##################################   Shopping Cart    ################################### */
-
-.cart-title {
-    font-family: 'Black Ops One', cursive;
-    color: var(--headfoot-font-color);
-    text-decoration: underline;
-    margin-top: 10px;
-}
-
-.cart-font {
-    font-family: 'Black Ops One', cursive;
-    color: var(--headfoot-font-color);
-}
 
 /* ##################################   Back Top Button   ################################### */
 
@@ -291,3 +190,6 @@ main {
 #myBtn:hover {
     background-color: #e89a1d;
 }
+
+/* ##################################   Back Top Button   ################################### */
+
