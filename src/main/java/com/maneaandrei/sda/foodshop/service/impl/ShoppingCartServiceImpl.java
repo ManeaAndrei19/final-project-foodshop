@@ -16,6 +16,7 @@ import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.*;
@@ -121,10 +122,15 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
             price += orderLine.getPrice();
         }
 
+        // Truncate price to 2 decimals
+        BigDecimal bd = new BigDecimal(String.valueOf(price));
+        BigDecimal rounded = bd.setScale(2, RoundingMode.FLOOR);
+        price = rounded.doubleValue();
+
         bill.setCurrency("RON");
         bill.setIssueDate(Timestamp.from(Instant.now()));
         bill.setTotalPrice(price);
-        bill.setDueDate(null);
+        bill.setDueDate(Timestamp.from(Instant.now().plusSeconds(3600))); // 1 hour delivery time
         billRepository.save(bill);
         order.setBill(bill);
 
