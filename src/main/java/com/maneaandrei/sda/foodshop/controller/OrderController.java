@@ -18,16 +18,8 @@ public class OrderController {
 
     @GetMapping("/orders")
     public String showOrdersPage(Model model) {
-        model.addAttribute("orders",orderService.findAll());
+        model.addAttribute("orders", orderService.findAll());
 
         return "orders";
     }
-
-
-//    @GetMapping("/view-order/{id}")
-//    public String order(Model model, @PathVariable("id") Long id) {
-//        model.addAttribute("orders",orderService.findAllByCustomerId(id));
-//
-//        return "view-order";
-//    }
 }

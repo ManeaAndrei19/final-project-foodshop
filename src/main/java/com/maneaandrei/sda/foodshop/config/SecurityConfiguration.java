@@ -28,7 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/webjars/**"
                 ).permitAll()
                 .antMatchers("/foods").permitAll() // pagini publice
-                .antMatchers("/edit/**", "/add-food").hasAuthority(Role.MANAGER.name()) // pagini pt admin
+                .antMatchers("/edit/**", "/add-food","/orders").hasAuthority(Role.MANAGER.name()) // pagini pt admin
                 .antMatchers("/view-order").hasAuthority(Role.CUSTOMER.name()) // pagini pt customer
                 .anyRequest().authenticated()
                 .and()

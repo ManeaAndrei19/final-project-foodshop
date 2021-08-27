@@ -41,7 +41,6 @@
         </div>
     </nav>
 
-
     <nav class="food-category-navigation">
 
         <div th:each="food_category : ${food_categories}">
@@ -69,9 +68,9 @@
             <div th:each="food : ${foods}">
                 <div th:if="${food.getFoodCategory().getId()==food_category.id}" class=" food-item-space">
                     <div sec:authorize="hasAuthority('MANAGER')">
-                        <a th:href="@{/edit/{id}(id=${food.id})}" class="btn btn-success"><i class="fas fa-edit"></i>Edit
+                        <a th:href="@{/edit/{id}(id=${food.id})}" class="btn btn-success black-ops-white-font"><i class="fas fa-edit"></i>Edit
                             Food</a>
-                        <a th:href="@{/delete/{id}(id=${food.id})}" class="btn btn-danger"><i
+                        <a th:href="@{/delete/{id}(id=${food.id})}" class="btn btn-danger black-ops-white-font"><i
                                 class="fas fa-trash-alt"></i>Delete Food</a>
                     </div>
                     <div class="food-item">
@@ -83,7 +82,7 @@
                             <h3 th:text="'Ingredients: '+ ${food.description}"></h3>
                             <h3 th:text="'Price: '+ ${food.price}+${food.currency}"></h3>
 
-                            <a th:href="${'/cart/add/' + food.getId()}" class="btn btn-warning"><i class="fas fa-cart-plus"></i> Add To Cart</a>
+                            <a th:href="${'/cart/add/' + food.getId()}" class="btn btn-warning black-ops-white-font"><i class="fas fa-cart-plus"></i> Add To Cart</a>
                             </button>
                         </div>
                     </div>

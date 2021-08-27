@@ -66,6 +66,11 @@ body {
     width: 100%;
 }
 
+.black-ops-white-font {
+    font-family: 'Black Ops One', cursive;
+    color: var(--headfoot-font-color);
+}
+
 /* ##################################   Header & Footer         ################################### */
 
 header {
