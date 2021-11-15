@@ -67,7 +67,7 @@ public class AccountService implements UserDetailsService {
         customerRepository.save(customer);
 
         try {
-            mailService.sendMail("andrei@food.com", account.getEmail(),"Account successfully created on Andrei's Food application", "Thank you for your registration!");
+            mailService.sendMail("andrei@food.com", account.getEmail(), "Account successfully created on Andrei's Food application", "Thank you for your registration!");
         } catch (MessagingException e) {
             e.printStackTrace();
         }

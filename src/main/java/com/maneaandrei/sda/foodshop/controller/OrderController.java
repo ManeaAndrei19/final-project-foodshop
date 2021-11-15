@@ -2,9 +2,13 @@ package com.maneaandrei.sda.foodshop.controller;
 
 import com.maneaandrei.sda.foodshop.service.FoodService;
 import com.maneaandrei.sda.foodshop.service.OrderService;
+import org.hibernate.mapping.Array;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.security.Principal;
+import java.util.ArrayList;
 
 @Controller
 public class OrderController {
@@ -22,4 +26,15 @@ public class OrderController {
 
         return "orders";
     }
+
+
+    @GetMapping("/view-order")
+    public String showMyOrdersPage(Model model, Principal principal) {
+        System.out.println(principal.getName());
+        model.addAttribute("orders", orderService.findAllByCustomerLogin(principal.getName()));
+        return "view-order";
+    }
+
+
 }
+

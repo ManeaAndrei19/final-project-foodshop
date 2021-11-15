@@ -34,7 +34,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     private Map<Food, Integer> cart = new LinkedHashMap<>();
 
-    public ShoppingCartServiceImpl(AccountRepository accountRepository, CustomerRepository customerRepository, OrderRepository orderRepository, OrderLineRepository orderLineRepository, BillRepository billRepository, MailService mailService) {
+    public ShoppingCartServiceImpl(AccountRepository accountRepository, CustomerRepository customerRepository,
+                                   OrderRepository orderRepository, OrderLineRepository orderLineRepository,
+                                   BillRepository billRepository, MailService mailService) {
         this.accountRepository = accountRepository;
         this.customerRepository = customerRepository;
         this.orderRepository = orderRepository;
@@ -97,6 +99,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         //info from customer
         order.setCustomer(customer);
         order.setAddress(customer.getAddress());
+        order.setCustomerLogin(customer.getEmail());
 
 
         orderRepository.save(order);

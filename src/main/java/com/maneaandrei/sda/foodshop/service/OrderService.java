@@ -21,7 +21,9 @@ public class OrderService {
         return StreamSupport.stream(orderRepository.findAll().spliterator(), false).collect(Collectors.toList());
     }
 
-    public List<Order> findAllByCustomerId(Long customerId) {
-        return StreamSupport.stream(orderRepository.findAllByCustomerId(customerId).spliterator(), false).collect(Collectors.toList());
+    public List<Order> findAllByCustomerLogin(String login) {
+        return StreamSupport.stream(orderRepository.findAllByCustomerLogin(login).spliterator(), false).collect(Collectors.toList());
     }
+
+
 }

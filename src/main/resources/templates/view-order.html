@@ -5,6 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>My Orders</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link rel="stylesheet" href="css/style.css">
@@ -15,23 +16,75 @@
         <h1><a th:href="@{/foods}">Andrei's Bistro</a></h1>
     </div>
 </header>
-<div class="container">
+<main class="container">
     <div class="text-center buttons-navigation grass" sec:authorize="hasAuthority('MANAGER')">
-        Div You are Logged in as MANAGER
+        You are Logged in as MANAGER
+        <h2>
+            Welcome <span sec:authentication="principal.username">User</span>
+        </h2>
+        <a th:href="@{/orders}" class="btn btn-info"><i class="fas fa-shopping-cart"></i>All Orders</a>
     </div>
     <div class="text-center buttons-navigation gem" sec:authorize="hasAuthority('CUSTOMER')">
-        Div You are Logged in as CUSTOMER
+        You are Logged in as CUSTOMER
+        <h2>
+            Welcome <span sec:authentication="principal.username">User</span>
+        </h2>
     </div>
+    <nav>
+        <div sec:authorize="isAnonymous()" class="buttons-navigation">
+            <a href="/login" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="/registration" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i> Register</a>
+        </div>
+        <div sec:authorize="isAuthenticated()" class="buttons-navigation">
+            <a th:href="@{/view-order}" class="btn btn-success"><i class="fas fa-cart-arrow-down"></i> My Orders</a>
+            <a th:href="@{/cart}" class="btn btn-warning"><i class="fas fa-cart-plus"></i> My Cart</a>
+            <a th:href="@{/logout}" class="btn btn-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </nav>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <h1 class="center-text order-title">My Orders</h1>
+
+    <table class="order-table center-text">
+        <!--        <tbody>-->
+        <tr class="order-table-head">
+            <th>Id</th>
+            <th>Email</th>
+            <th>Price</th>
+            <th>Address</th>
+            <th>Issue Date</th>
+            <th>Due Date</th>
+            <th>Status</th>
+        </tr>
+        <tr th:each="order : ${orders}" class="order-table-info">
+            <td th:text="${order.getId()}"></td>
+            <td th:text="${order.getCustomer().getEmail()}"></td>
+            <td th:text="${order.getBill().getTotalPrice()}+${order.getBill().getCurrency()}"></td>
+            <td th:text="${order.getAddress()}"></td>
+            <td th:text="${order.getBill().getIssueDate()}"></td>
+            <td th:text="${order.getBill().getDueDate()}"></td>
+            <td th:text="${order.getOrderStatus()}"></td>
+        </tr>
+        <!--        </tbody>-->
+    </table>
 
 
-
+</main>
 
 <footer>
     <div class="container center-text">
         <h1> Information</h1>
+        <p>Copyright &copy 2021, Andrei's Bistro Inc. All rights reserved.</p>
         <p><i class="fas fa-mobile-alt"></i> Phone: 0754848937</p>
         <p><i class="far fa-envelope"></i> Email: maneaandrei19@yahoo.com</p>
     </div>
 </footer>
+
+
+<!-- JS Scrips -->
+<script src="js/script.js"></script>
 </body>
 </html>

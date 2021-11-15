@@ -12,6 +12,9 @@ public class Order {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "customer_login")
+    private String customerLogin;
+
     @Column(name = "address")
     private String address;
 
@@ -34,7 +37,8 @@ public class Order {
     private List<OrderLine> orderLines;
 
 
-    public Order(String address, Timestamp creationDate, Customer customer, Bill bill, OrderStatus orderStatus, List<OrderLine> orderLines) {
+    public Order(String customerLogin,String address, Timestamp creationDate, Customer customer, Bill bill, OrderStatus orderStatus, List<OrderLine> orderLines) {
+        this.customerLogin = customerLogin;
         this.address = address;
         this.creationDate = creationDate;
         this.customer = customer;
@@ -53,6 +57,14 @@ public class Order {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCustomerLogin() {
+        return customerLogin;
+    }
+
+    public void setCustomerLogin(String customerLogin) {
+        this.customerLogin = customerLogin;
     }
 
     public String getAddress() {
@@ -107,6 +119,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
+                ", customerLogin='" + customerLogin + '\'' +
                 ", address='" + address + '\'' +
                 ", creationDate=" + creationDate +
                 ", customer=" + customer +
@@ -114,4 +127,5 @@ public class Order {
                 ", orderStatus=" + orderStatus +
                 '}';
     }
+
 }

@@ -75,9 +75,8 @@ public class FoodController {
     }
 
 
-    ////////EDIT
     @GetMapping("/edit/{id}")
-    public String showEditResidenceForm(@PathVariable(value = "id") Long id, Model model) {
+    public String showEditFoodForm(@PathVariable(value = "id") Long id, Model model) {
         Food food = foodService.findById(id).get(); // convert to DTO
         FoodDTO foodDTO = foodService.createFoodDTO(food);
         model.addAttribute("food", foodDTO); // insert foodDTO?
@@ -89,7 +88,7 @@ public class FoodController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateResidence(@PathVariable(value = "id") Long id, @Valid FoodDTO foodDTO,
+    public String updateFood(@PathVariable(value = "id") Long id, @Valid FoodDTO foodDTO,
                                   BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "edit-food";

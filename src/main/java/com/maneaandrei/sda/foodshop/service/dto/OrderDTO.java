@@ -10,6 +10,7 @@ import java.util.List;
 
 public class OrderDTO {
     private Long id;
+    private String customerLogin;
     private String address;
     private Timestamp creationDate;
     private Customer customer;
@@ -19,6 +20,14 @@ public class OrderDTO {
 
     public Long getId() {
         return id;
+    }
+
+    public String getCustomerLogin() {
+        return customerLogin;
+    }
+
+    public void setCustomerLogin(String customerLogin) {
+        this.customerLogin = customerLogin;
     }
 
     public void setId(Long id) {
